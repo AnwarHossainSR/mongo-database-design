@@ -61,10 +61,6 @@ const examSchema = mongoose.Schema(
         ref: "question_sets",
       },
     },
-    total_marks: {
-      type: Number,
-      required: true,
-    },
     approval: {
       approved: {
         type: Boolean,
@@ -73,6 +69,7 @@ const examSchema = mongoose.Schema(
       approved_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
+        default: null,
       },
     },
     status: {
