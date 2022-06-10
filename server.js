@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import CandidateRoute from "./routes/Candidate.js";
 import CandidatRoleRoute from "./routes/CandidateRole.js";
 import ExamRoute from "./routes/Exam.js";
 import QuestionRoute from "./routes/Question.js";
@@ -10,6 +11,7 @@ import QuestionTypeRoute from "./routes/QuestionType.js";
 import RoleRoute from "./routes/Role.js";
 import Technology from "./routes/Technology.js";
 import UserRoute from "./routes/User.js";
+
 const app = express();
 
 // Middleware
@@ -39,3 +41,4 @@ app.use("/question-type", QuestionTypeRoute);
 app.use("/question", QuestionRoute);
 app.use("/question-set", QuestionSetRoute);
 app.use("/exam", ExamRoute);
+app.use("/candidate", CandidateRoute);
