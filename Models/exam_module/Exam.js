@@ -56,7 +56,7 @@ const examSchema = mongoose.Schema(
         type: Boolean,
         default: false,
       },
-      questions: {
+      question_set: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "question_sets",
       },

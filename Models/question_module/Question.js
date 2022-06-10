@@ -1,36 +1,67 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+const optionSubSchema = mongoose.Schema({
+  option_text: {
+    type: String,
+    required: true,
+  },
+  option_code: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
+
 const questionSchema = mongoose.Schema(
   {
-    question_text: {
-      type: String,
-      required: true,
-    },
-    question_options: {
-      type: Schema.Types.Mixed,
-      default: null,
-    },
     question_type: {
       type: Schema.Types.ObjectId,
       ref: "question_types",
       required: true,
     },
-    technoloy_stack: {
+    technology_stack: {
       type: Schema.Types.ObjectId,
       ref: "technologies",
       required: true,
     },
+    question_text: {
+      type: String,
+      required: true,
+    },
+    mcq_options: [optionSubSchema],
+    mcq_answers: [
+      {
+        option_code: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    matching_options: {
+      column_1: [optionSubSchema],
+      column_2: [optionSubSchema],
+    },
+    matching_answers: [
+      {
+        column_1: {
+          option_code: {
+            type: String,
+            required: true,
+          },
+        },
+        column_2: {
+          option_code: {
+            type: String,
+            required: true,
+          },
+        },
+      },
+    ],
     candidate_role: [
       {
         type: Schema.Types.ObjectId,
         ref: "candidate_role",
-      },
-    ],
-    correct_answers: [
-      {
-        type: Schema.Types.Mixed,
-        required: true,
       },
     ],
     answer_description: {
