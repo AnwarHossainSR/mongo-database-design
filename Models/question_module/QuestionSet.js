@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { optionSubSchema } from "./SubSchema.js";
+
 const Schema = mongoose.Schema;
 
 const questionSetSchema = mongoose.Schema(
@@ -9,6 +11,16 @@ const questionSetSchema = mongoose.Schema(
     },
     questions: [
       {
+        question_type: {
+          type: Schema.Types.ObjectId,
+          ref: "question_types",
+          required: true,
+        },
+        technology_stack: {
+          type: Schema.Types.ObjectId,
+          ref: "technologies",
+          required: true,
+        },
         question_text: {
           type: String,
           required: true,
@@ -17,26 +29,39 @@ const questionSetSchema = mongoose.Schema(
           type: Schema.Types.Mixed,
           default: null,
         },
-        question_type: {
-          type: Schema.Types.ObjectId,
-          ref: "question_types",
-          required: true,
+        mcq_options: [optionSubSchema],
+        mcq_answers: [
+          {
+            option_code: {
+              type: String,
+              required: true,
+            },
+          },
+        ],
+        matching_options: {
+          column_1: [optionSubSchema],
+          column_2: [optionSubSchema],
         },
-        technoloy_stack: {
-          type: Schema.Types.ObjectId,
-          ref: "technologies",
-          required: true,
-        },
+        matching_answers: [
+          {
+            column_1: {
+              option_code: {
+                type: String,
+                required: true,
+              },
+            },
+            column_2: {
+              option_code: {
+                type: String,
+                required: true,
+              },
+            },
+          },
+        ],
         candidate_role: [
           {
             type: Schema.Types.ObjectId,
             ref: "candidate_role",
-          },
-        ],
-        correct_answers: [
-          {
-            type: Schema.Types.Mixed,
-            required: true,
           },
         ],
         answer_description: {
