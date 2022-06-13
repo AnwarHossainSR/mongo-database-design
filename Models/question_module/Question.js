@@ -1,17 +1,6 @@
 import mongoose from "mongoose";
+import { optionSubSchema } from "./SubSchema.js";
 const Schema = mongoose.Schema;
-
-const optionSubSchema = mongoose.Schema({
-  option_text: {
-    type: String,
-    required: true,
-  },
-  option_code: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-});
 
 const questionSchema = mongoose.Schema(
   {
@@ -28,6 +17,10 @@ const questionSchema = mongoose.Schema(
     question_text: {
       type: String,
       required: true,
+    },
+    question_options: {
+      type: Schema.Types.Mixed,
+      default: null,
     },
     mcq_options: [optionSubSchema],
     mcq_answers: [
