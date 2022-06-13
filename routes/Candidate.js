@@ -8,4 +8,5 @@ const router = express.Router();
 
 router.get("/", GetAllCandidate);
 router.post("/create", CreateCandidate);
+
 export default router;
