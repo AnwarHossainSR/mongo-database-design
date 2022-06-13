@@ -22,15 +22,19 @@ const candidateSchema = mongoose.Schema(
       type: String,
       default: "system generated password id",
     },
+    image_url: {
+      type: String,
+      default: null,
+    },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
-      required:true,
+      required: true,
     },
     updated_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
-      required:true,
+      required: true,
     },
   },
   { timestamps: true }

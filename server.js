@@ -45,4 +45,4 @@ app.use("/question-set", QuestionSetRoute);
 app.use("/exam", ExamRoute);
 app.use("/candidate", CandidateRoute);
 app.use("/answer", AnswerRoute);
-app.use("/answer", FinalCandidateRoute);
+app.use("/final-candidate", FinalCandidateRoute);
