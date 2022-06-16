@@ -4,21 +4,32 @@ const Schema = mongoose.Schema;
 
 const questionSchema = mongoose.Schema(
   {
-    question_type: {
-      type: Schema.Types.ObjectId,
-      ref: "question_types",
-      required: true,
+    type: {
+      name: {
+        type: String,
+        required: true,
+      },
     },
-    technology_stack: {
-      type: Schema.Types.ObjectId,
-      ref: "technologies",
-      required: true,
+    technology: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    difficulties: {
+      name: {
+        type: String,
+        required: true,
+      },
     },
     question_text: {
       type: String,
+      unique: true,
       required: true,
     },
-    question_options: {
+    options: {
       type: Schema.Types.Mixed,
       default: null,
     },
@@ -57,13 +68,19 @@ const questionSchema = mongoose.Schema(
     ],
     candidate_role: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "candidate_role",
+        name: {
+          type: String,
+          required: true,
+        },
       },
     ],
     answer_description: {
       type: String,
       default: null,
+    },
+    automation: {
+      type: Boolean,
+      default: true,
     },
     manual_evaluation: {
       type: Boolean,
@@ -82,6 +99,13 @@ const questionSchema = mongoose.Schema(
         comment_by: {
           type: Schema.Types.ObjectId,
           ref: "users",
+        },
+      },
+    ],
+    tags: [
+      {
+        name: {
+          type: String,
         },
       },
     ],

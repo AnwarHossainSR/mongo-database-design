@@ -29,6 +29,10 @@ const questionSetSchema = mongoose.Schema(
           type: Schema.Types.Mixed,
           default: null,
         },
+        correct_answers: {
+          type: Schema.Types.Mixed,
+          default: null,
+        },
         mcq_options: [optionSubSchema],
         mcq_answers: [
           {
