@@ -6,8 +6,10 @@ const Schema = mongoose.Schema;
 const questionSetSchema = mongoose.Schema(
   {
     candidate_role: {
-      type: Schema.Types.ObjectId,
-      ref: "candidate_role",
+      name: {
+        type: String,
+        required: true,
+      },
     },
     questions: [
       {
@@ -313,6 +315,11 @@ const questionSetSchema = mongoose.Schema(
             },
           },
         ],
+        status: {
+          type: String,
+          enum: ["pending", "submitted"],
+          default: "pending",
+        },
       },
     ],
     used_in_exam: {

@@ -5,6 +5,7 @@ const finalCandidateSchema = mongoose.Schema(
     candidate: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "candidates",
+      required: true,
     },
     exam: {
       type: mongoose.Schema.Types.ObjectId,

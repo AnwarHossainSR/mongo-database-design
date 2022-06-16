@@ -12,8 +12,10 @@ const examSchema = mongoose.Schema(
       required: true,
     },
     candidate_role: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "candidate_role",
+      name: {
+        type: String,
+        required: true,
+      },
     },
     candidate_list: [
       {
